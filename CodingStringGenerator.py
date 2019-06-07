@@ -67,7 +67,7 @@ def process_rule(coding_rule):
     return current_value, full_rule
 
 
-def evaluate_option_rules(loc, codes, original_coding):
+def evaluate_option_rules(loc, codes):
     df = pd.read_excel(loc, sheet_name=0, index_col=None, na_values=['NA'], usecols="I")
     df = df[10:]
 
@@ -92,9 +92,13 @@ def evaluate_option_rules(loc, codes, original_coding):
             else:
                 full_rule = str(results[0])
 
-        print(i, ": ", full_rule)
-        print(i, ": ", eval(str(full_rule)))
+        return eval(str(full_rule))
 
+
+def edit_original_coding(lines, original):
+
+    final_string = []
+    return final_string
 
 option_codes_loc = "1PT MFAL AM800.xlsx"
 coding_table_loc = "HVAC222-HVAC222_HVAC_HSW11-00.08.00-C093-19.14.01.xlsx"
@@ -102,4 +106,6 @@ coding_table_loc = "HVAC222-HVAC222_HVAC_HSW11-00.08.00-C093-19.14.01.xlsx"
 option_codes = load_option_codes(option_codes_loc)
 original_coding = get_original_coding(coding_table_loc)
 
-evaluate_option_rules(coding_table_loc, option_codes, original_coding)
+relevant_lines = evaluate_option_rules(coding_table_loc, option_codes)
+
+final_string = edit_original_coding(relevant_lines, original_coding)
