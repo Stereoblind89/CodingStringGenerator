@@ -88,8 +88,8 @@ def evaluate_option_rules(loc, codes):
     start_bit = df.iloc[:, 1]
     start_bit = start_bit.tolist()
 
-    data_value = df.iloc[:, 2]
-    data_value = data_value.tolist()
+    code_data_value = df.iloc[:, 2]
+    code_data_value = code_data_value.tolist()
 
     data_length = df.iloc[:, 3]
     data_length = data_length.tolist()
@@ -122,9 +122,9 @@ def evaluate_option_rules(loc, codes):
 
         rule_result.append(eval(str(full_rule)))
 
-    coding_string_data = list(zip(start_byte, start_bit, data_value, data_length, rule_result, segment))
+    original_coding_string_data = list(zip(start_byte, start_bit, code_data_value, data_length, rule_result, segment))
 
-    return coding_string_data
+    return original_coding_string_data
 
 
 def edit_original_coding(lines, original):
